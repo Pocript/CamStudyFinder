@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/static/style.css">
+        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=yes;">
+        <title>캠스터디 찾기</title>
+    </head>
+    <body>
+        <div id="indexTitle">CamStudy</div>
+        <%
+    for(var i=0; i<rows.length; i++)
+    {%>
+        <div class="serverBlock">
+            <div><%-
+            rows[i].type=='meet'?'<div id="iconBlock"><img id="typeIcon" src="/static/meet.png"> <div id="iconText">MEET</div></div>'
+            :rows[i].type=='zoom'?'<div id="iconBlock"><img id="typeIcon" src="/static/zoom.png"> <div id="iconText">ZOOM</div></div>'
+            :null
+            %></div>
+            <div id="blockTitle"><%-rows[i].title%><img id="newTap" src="/static/link.png" onclick="location.href='<%-rows[i].adr%>'"></div>
+            <div id="blockDesc"><%-rows[i].desc%></div>
+        </div>
+    <%}%>
+    </body>
+</html>

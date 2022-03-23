@@ -1,0 +1,87 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <title>서버 등록하기</title>
+    </head>
+    <body>
+        <select id="selectbox" onchange="chageLangSelect()">
+            <option>캠스터디 타입</option>
+            <option value="zoom">ZOOM</option>
+            <option value="meet">MEET</option>
+        </select>
+        
+        <form id="serverForm">
+            
+        </form>
+        <button등록 onclick="send()">등록</button>
+        
+        <script>
+        let zoom = `<div class="input" id="zoom">
+            <div><input name="name" type="text" placeholder="이름"/></div>
+            <div><input name="adr" type="text" placeholder="주소"/></div>
+            <div><input name="code" type="text" placeholder="회의코드"/></div>
+            <div><input name="pwd" type="text" placeholder="비밀번호(없을시 비워주세요.)"/></div>
+            <div><textarea name="desc" placeholder="설명을 입력해주세요."></textarea></div>
+        </div>`
+        let meet = `<div class="input" id="meet">
+            <div><input name="name" type="text" placeholder="이름"/></div>
+            <div><input name="adr" type="text" placeholder="주소"/></div>
+            <div><input name="code" type="text" placeholder="회의코드"/></div>
+            <div><textarea name="desc" placeholder="설명을 입력해주세요."></textarea></div>
+        </div>`
+        
+        var type;
+        
+        function chageLangSelect(){
+            var langSelect = document.getElementById("selectbox");
+            var selectValue = langSelect.options[langSelect.selectedIndex].value;
+            $("#serverForm").empty()
+            if(selectValue=='meet'){
+                type = selectValue
+                return $("#serverForm").append(meet)
+            }else if(selectValue=='zoom'){
+                type = selectValue
+                return $("#serverForm").append(zoom)
+            }
+        }
+
+        function send(){
+            let name = $("input[name=name]").val()
+            let adr = $("input[name=adr]").val()
+            let code = $("input[name=code]").val()
+            let desc = $("textarea[name=desc]").val()
+            
+            if(!type) return alert('스터디 타입을 선택해주세요.')
+            else if(name == ''){
+                $("input[name=name]").focus()
+                return alert('스터디 이름을 입력해주세요')
+            } 
+            else if(adr == ''){
+                $("input[name=adr]").focus()
+                return alert('스터디 주소를 입력해주세요')
+            } 
+            else if(code == ''){
+                $("input[name=code]").focus()
+                return alert('스터디 코드를 입력해주세요')
+            }
+            else if(desc == ''){
+                $("textarea[name=desc]").focus()
+                return alert('스터디 설명을 입력해주세요')
+            }
+            
+            let data = $("#serverForm").serialize() + '&type='+type
+             $.ajax({
+                type : "POST",            
+                url : "/insert",      
+                data : data,            
+                success : function(res){ 
+                    location.href = '/'
+                },
+                error : function(XMLHttpRequest, textStatus, errorThrown){
+                    alert("통신 실패.")
+                }
+        })
+        }
+    </script>
+    </body>
+</html>

@@ -1,0 +1,73 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+.serverBlock{
+    height: 12rem;
+    width: 70vw;
+    margin: 0 auto;
+    margin-top: 1rem;
+    border: 0.2rem solid #e2e2e2;
+    border-radius: 1rem;
+}
+#indexTitle{
+    font-size: 6rem;
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+#blockTitle{
+    font-size: 2.5rem;
+    margin-left: 1rem;
+}
+#typeIcon{
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 0.5rem;
+    float: left;
+}
+#iconBlock{
+    width: 5rem;
+    height: 1.5rem;
+    background: #e2e2e2;
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+#iconText{
+    float: left;
+    margin-top: 0.3rem;
+    margin-left: 0.2rem;
+    font-size: 0.9rem;
+    font-weight: 800;
+}
+#blockDesc{
+    margin-left: 1.3rem;
+}
+#newTap{
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 0.5rem;
+}
+
+@media screen and (min-width:1024px) {
+	/* Desktop */
+}
+@media screen and (min-width:768px) and (max-width: 1023px) {
+	/* Tablet */
+}
+@media screen and (max-width:767px){ 
+#indexTitle{
+    font-size: 4.5rem;
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+.serverBlock{
+    height: 12rem;
+    width: calc(100vw - 3rem);
+    margin: 0 auto;
+    margin-top: 1rem;
+    border: 0.2rem solid #e2e2e2;
+    border-radius: 1rem;
+}
+}
